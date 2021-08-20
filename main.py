@@ -154,7 +154,7 @@ def fras():
         if key == ord("q"):
             cv2.destroyAllWindows()
             break
-     
+
 #creating function for deleting records
 def Del_rec():
     top =Toplevel()
@@ -306,6 +306,10 @@ show_menu.add_command(label="Student Attendance",command=S_Attendance)
 L1 = Label(root, text="Facial Attendance System ",font= ('Arial',25)).pack(fill='x')
 btn = Button(root, text="START", command=fras, height= 10, width=20).place(relx=0.5, rely=0.5, anchor=CENTER)
 btn2 = Button(root, text="Exit", command=root.destroy, height= 5, width=10).place(relx=0.5, rely=0.7, anchor=CENTER)
+btn = Button(root, text="NEW", command=new, height= 10, width=20).place(relx=0.1, rely=0.2, anchor=CENTER)
+btn2 = Button(root, text="DELETE", command=Del_rec, height= 10, width=20).place(relx=0.1, rely=0.4, anchor=CENTER)
+btn = Button(root, text="ATTENDANCE", command=S_Attendance, height= 10, width=20).place(relx=0.1, rely=0.6, anchor=CENTER)
+
 
 
 
