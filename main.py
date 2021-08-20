@@ -1,16 +1,29 @@
 from tkinter import *
+import requirements
+requirements.requirements()
 import cv2
 import sqlite3
-import os
 import face_recognition as fr
 import datetime
 import numpy as np
 from tkcalendar import *
+import os
 
 
-pathlib = '/home/babayega/Documents/images'
+
+direct = "Documents/FRAS"
+dir = os.environ['HOME']
+
+
+path = os.path.join(dir,direct)
+print(path)
+if not os.path.exists(path):
+    os.makedirs(path)
+pathlib =f'{ path }'
 root = Tk()
-root.geometry("720x600")
+root.overrideredirect(True)
+root.overrideredirect(False)
+root.attributes('-fullscreen',True)
 root.title("FRAS")
 root.resizable(0, 0)
 
@@ -141,7 +154,7 @@ def fras():
         if key == ord("q"):
             cv2.destroyAllWindows()
             break
-
+     
 #creating function for deleting records
 def Del_rec():
     top =Toplevel()
@@ -218,7 +231,7 @@ def new():
                     break
                 elif key % 256 == 32:
                     # SPACE pressed
-                    img_name = "/home/babayega/Documents/images/" + c_id.get() + ".png"
+                    img_name =pathlib+"/"+ c_id.get() + ".png"
                     cv2.imwrite(img_name, frame)
                     print("{} written!".format(img_name))
                     img_counter += 1
@@ -279,7 +292,7 @@ file_menu = Menu(my_menu)
 edit_menu=Menu(my_menu)
 show_menu = Menu(my_menu)
 # file Menu
-my_menu.add_cascade(label="File",menu=file_menu)
+my_menu.add_cascade(label="File", menu=file_menu)
 file_menu.add_command(label="New", command = new)
 # edit menu
 my_menu.add_cascade(label="Edit", menu=edit_menu)
@@ -291,7 +304,9 @@ show_menu.add_command(label="Student Attendance",command=S_Attendance)
 
 
 L1 = Label(root, text="Facial Attendance System ",font= ('Arial',25)).pack(fill='x')
-btn = Button(root, text = "START", command  = fras, height= 10, width=20).place(relx=0.5, rely=0.5, anchor=CENTER)
+btn = Button(root, text="START", command=fras, height= 10, width=20).place(relx=0.5, rely=0.5, anchor=CENTER)
+btn2 = Button(root, text="Exit", command=root.destroy, height= 5, width=10).place(relx=0.5, rely=0.7, anchor=CENTER)
+
 
 
 
